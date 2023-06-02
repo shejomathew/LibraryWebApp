@@ -1,0 +1,216 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row" style="margin-top: 20px">
+      <div class="col-md-12">
+        <mat-card>
+          <div class="container text-center">
+            <img src=" ../../../assets/images.jpeg" alt="" />
+          </div>
+
+          <h1 class="text-center">Register here</h1>
+
+          <!-- {{ user | json }} -->
+
+          <ng-container [ngSwitch]="stepperOrientation | async">
+            <div *ngSwitchCase="'horizontal'">
+              Make your screen smaller to see a vertical stepper
+            </div>
+            <div *ngSwitchCase="'vertical'">
+              Make your screen larger to see a horizontal stepper
+            </div>
+          </ng-container>
+
+          <button mat-raised-button (click)="isEditable = !isEditable">
+            {{ !isEditable ? "Enable edit mode" : "Disable edit mode" }}
+          </button>
+          <form (ngSubmit)="formSubmit()">
+            <mat-stepper
+              linear
+              #stepper
+              class="example-stepper"
+              [orientation]="(stepperOrientation | async)!"
+            >
+              <mat-step
+                [stepControl]="firstFormGroup"
+                [editable]="isEditable"
+                label="Fill out your details"
+              >
+                <form [formGroup]="firstFormGroup">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input
+                      [(ngModel)]="user.username"
+                      name="username"
+                      type="email"
+                      matInput
+                      placeholder="shoulb be an email"
+                      formControlName="firstCtrl"
+                      required
+                    />
+                    <mat-hint>User name must be unique</mat-hint>
+                  </mat-form-field>
+
+                  <mat-form-field style="margin-left: 20px" appearance="fill">
+                    <mat-label>First Name</mat-label>
+                    <input
+                      [(ngModel)]="user.firstName"
+                      name="firstName"
+                      matInput
+                      placeholder="First name"
+                      formControlName="firstCtrl"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="margin-left: 20px" appearance="fill">
+                    <mat-label>Last Name</mat-label>
+                    <input
+                      [(ngModel)]="user.lastName"
+                      name="lastName"
+                      matInput
+                      placeholder="Last name"
+                      formControlName="firstCtrl"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="margin-left: 20px" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input
+                      [(ngModel)]="user.password"
+                      name="password"
+                      type="password"
+                      matInput
+                      placeholder="Password"
+                      formControlName="firstCtrl"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <div align="end">
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step
+                [stepControl]="secondFormGroup"
+                [editable]="isEditable"
+                label="Fill out your address"
+              >
+                <form [formGroup]="secondFormGroup">
+                  <mat-form-field style="margin-left: 20px" appearance="fill">
+                    <mat-label>Street Address</mat-label>
+                    <input
+                      [(ngModel)]="user.address.street"
+                      name="street"
+                      matInput
+                      formControlName="secondCtrl"
+                      placeholder="street address"
+                      required
+                    />
+                  </mat-form-field>
+                  <mat-form-field style="margin-left: 20px" appearance="fill">
+                    <mat-label>City</mat-label>
+                    <input
+                      [(ngModel)]="user.address.city"
+                      name="city"
+                      matInput
+                      formControlName="secondCtrl"
+                      placeholder="city"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="margin-left: 20px" appearance="fill">
+                    <mat-label>State</mat-label>
+                    <input
+                      [(ngModel)]="user.address.state"
+                      name="state"
+                      matInput
+                      formControlName="secondCtrl"
+                      placeholder="State"
+                      required
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="margin-left: 20px" appearance="fill">
+                    <mat-label>Country</mat-label>
+                    <input
+                      [(ngModel)]="user.address.country"
+                      name="country"
+                      matInput
+                      formControlName="secondCtrl"
+                      placeholder="country"
+                      required
+                    />
+                  </mat-form-field>
+                  <mat-form-field style="margin-left: 20px" appearance="fill">
+                    <mat-label>Zip Code</mat-label>
+                    <input
+                      [(ngModel)]="user.address.zipcode"
+                      name="zipcode"
+                      matInput
+                      formControlName="secondCtrl"
+                      placeholder="zip code"
+                      required
+                    />
+                  </mat-form-field>
+                  <div align="end">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step
+                [stepControl]="thirdFormGroup"
+                [editable]="isEditable"
+                label="Fill out other details"
+              >
+                <form [formGroup]="thirdFormGroup">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Phone number</mat-label>
+                    <input
+                      [(ngModel)]="user.phone"
+                      name="phone"
+                      matInput
+                      formControlName="thirdCtrl"
+                      placeholder="Ex. 12345678"
+                      required
+                    />
+                  </mat-form-field>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Select</mat-label>
+                    <mat-select
+                      [(ngModel)]="user.role.roleName"
+                      name="roleName"
+                      (selectionChange)="roleSelection($event)"
+                    >
+                      <mat-option [value]="roles.value1">Librarian</mat-option>
+                      <mat-option [value]="roles.value2">Reader</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div align="end">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div align="end">
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button (click)="stepper.reset()">Reset</button>
+                  <button type="submit" mat-button matStepperPrevious>
+                    Submit
+                  </button>
+                </div>
+              </mat-step>
+            </mat-stepper>
+          </form>
+        </mat-card>
+        å
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.example-header-image {
+  background-image: url("../../../../assets/library.jpeg");
+  background-size: cover;
+}
+.txt-size {
+  font-size: 15px;
+}
+.pad15 {
+  padding: 15px;
+}

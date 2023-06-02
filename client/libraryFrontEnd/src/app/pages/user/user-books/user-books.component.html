@@ -1,0 +1,51 @@
+<mat-card class="mt50 mr20 ml20 pad15" *ngFor="let b of books">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>
+      {{ b?.bookName }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ b?.author }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="txt-size ml56">{{ b?.description }}</p>
+  </mat-card-content>
+  <div class="row mt10 ml30">
+    <div class="ml30 txt-size col-md-2">
+      <h4>Issuer: {{ b?.takenBy }}</h4>
+    </div>
+    <div class="txt-size col-md-2">
+      <h4>Issue Date: {{ b?.takenDate }}</h4>
+    </div>
+    <div class="txt-size col-md-3">
+      <h4>Return Date: {{ b?.returnDate }}</h4>
+    </div>
+    <div class="txt-size col-md-3">
+      <h4>Available: {{ b?.available }}</h4>
+    </div>
+  </div>
+  <mat-card-actions align="end" class="mr60">
+    <!-- <button mat-flat-button color="accent" class="ml20" (click)="nextStep()">
+      Next
+    </button> -->
+    <button
+      mat-flat-button
+      color="accent"
+      class="ml20"
+      (click)="issueBook(b.id)"
+    >
+      Issue
+    </button>
+  </mat-card-actions>
+</mat-card>
+<div class="container text-center mt20">
+  <!-- <button
+    mat-raised-button
+    color="accent"
+    class="ml20"
+    routerLink="/admin/add-book"
+  >
+    Add book
+  </button> -->
+</div>

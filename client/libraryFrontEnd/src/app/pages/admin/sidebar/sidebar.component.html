@@ -1,0 +1,25 @@
+<mat-card class="mt50">
+  <mat-action-list>
+    <div mat-subheader>Menu</div>
+    <button mat-list-item routerLink="/admin">
+      <mat-icon mat-list-icon>home</mat-icon>
+      Home
+    </button>
+    <button mat-list-item routerLink="/admin/profile">
+      <mat-icon mat-list-icon>account_circle</mat-icon>
+      Profile
+    </button>
+    <button mat-list-item routerLink="/admin/view-book">
+      <mat-icon mat-list-icon>list</mat-icon>
+      Books
+    </button>
+    <button mat-list-item routerLink="/admin/add-book">
+      <mat-icon mat-list-icon>add_circle</mat-icon>
+      Add Book
+    </button>
+    <button mat-list-item (click)="logout()" *ngIf="isLoggedIn">
+      <mat-icon mat-list-icon>logout</mat-icon>
+      Log out
+    </button>
+  </mat-action-list>
+</mat-card>
